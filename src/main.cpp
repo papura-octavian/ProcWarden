@@ -1,7 +1,4 @@
 #include "agent/ProcessEnumerator.h"
-#include "common/UniqueHandle.h"
-
-constexpr wchar_t kNewline = L'\n';
 
 int main(void)
 {
