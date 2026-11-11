@@ -20,6 +20,7 @@ endif()
 
 add_executable(procwarden
     src/main.cpp
+    src/agent/ProcessEnumerator.cpp
 )
 
 target_compile_options(procwarden PRIVATE
