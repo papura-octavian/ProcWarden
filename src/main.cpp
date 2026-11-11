@@ -1,4 +1,3 @@
-#include <iostream>
 #include "agent/ProcessEnumerator.h"
 
 int main(void)
