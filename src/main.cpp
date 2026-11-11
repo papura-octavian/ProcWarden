@@ -9,7 +9,7 @@ int main(void)
 
     for(const auto& process : processes) {
         std::wcout << process;
-    }
+    }                  
 
     return 0;
 }
