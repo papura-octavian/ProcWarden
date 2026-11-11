@@ -1,9 +1,12 @@
-#include <iostream>
+#include "agent/ProcessEnumerator.h"
 
-int main()
+int main(void)
 {
-    int counter = 0;
-    counter += 42; // pune un breakpoint aici ca sa verifici debuggerul
-    std::cout << "ProcWarden setup OK, counter = " << counter << '\n';
+    std::vector<ProcessInfo> processes = EnumerateProcesses();
+
+    for(const auto& process : processes) {
+        std::wcout << process;
+    }                  
+
     return 0;
 }
