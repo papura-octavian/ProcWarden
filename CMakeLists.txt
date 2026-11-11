@@ -23,6 +23,8 @@ add_executable(procwarden
     src/agent/ProcessEnumerator.cpp
 )
 
+target_include_directories(procwarden PRIVATE src)
+
 target_compile_options(procwarden PRIVATE
     /W4           # avertismente stricte
     /permissive-  # conformitate stricta cu standardul

@@ -2,11 +2,12 @@
 
 #include <iostream>
 #include <string>
+#include <cstdint>
 
 struct ProcessInfo
 {
-    int pid;
-    int parentPid;
+    std::uint32_t pid;
+    std::uint32_t parentPid;
     std::wstring exeName;
 
     // Declared as a friend (non-member) so the stream is the left operand:
