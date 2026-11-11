@@ -12,7 +12,7 @@ struct ProcessInfo
     // Declared as a friend (non-member) so the stream is the left operand:
     // `std::wcout << process`. As a member it would have to be `process << stream`.
     friend std::wostream& operator<<(std::wostream& os, const ProcessInfo& pi) {
-        os << pi.pid << L" " << pi.parentPid << L" " << pi.exeName << std::endl;
+        os << pi.pid << L" " << pi.parentPid << L" " << pi.exeName << L"\n";
         return os;
     }
 };
