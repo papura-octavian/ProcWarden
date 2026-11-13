@@ -4,6 +4,26 @@
 #include <windows.h>
 #include <tlhelp32.h>   
 
+namespace {
+    std::wstring QueryImagePath(DWORD pid) {
+        UniqueHandle process(OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pid));
+        if(!process.IsValid()) {
+            return {};
+        }
+
+        std::wstring path(32768, L'\0');
+        DWORD size = static_cast<DWORD> (path.size());
+
+        if (!QueryFullProcessImageNameW(process.Get(), 0, path.data(), &size))
+        {
+            return {};
+        }
+
+        path.resize(size);
+        return path;
+    }
+}
+
 std::vector<ProcessInfo> EnumerateProcesses(void) {
     std::vector<ProcessInfo> processes;
 
@@ -23,7 +43,8 @@ std::vector<ProcessInfo> EnumerateProcesses(void) {
        processes.push_back({
             entry.th32ProcessID,
             entry.th32ParentProcessID,
-            entry.szExeFile
+            entry.szExeFile,
+            QueryImagePath(entry.th32ProcessID)
        }); 
     } while (Process32NextW(snapshot.Get(), &entry));
 
