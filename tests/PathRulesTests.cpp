@@ -43,3 +43,15 @@ TEST(IsUnderDirectory, DirectoryWithTrailingBackslash) {
         L"C:\\Users\\test\\Downloads\\"
     ));
 }
+
+TEST(IsUnderDirectory, PathEqualToDirectory) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads",
+        L"C:\\Users\\test\\Downloads"
+    ));
+
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
