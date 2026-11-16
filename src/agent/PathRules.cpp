@@ -12,8 +12,7 @@ bool IsUnderDirectory(std::wstring_view path, std::wstring_view directory) {
         while (index < str.size()) {
             if (str[index] == L'\\') {
                 index++;
-                std::transform(begin(result), end(result), begin(result), ::towlower);
-                return result;
+                break;
             }
             
             result += str[index++];
