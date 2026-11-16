@@ -31,7 +31,7 @@ TEST(IsUnderDirectory, SiblingDirectoryWithSamePrefix) {
 }
 
 TEST(IsUnderDirectory, CaseInsensitiveMatch) {
-    EXPECT_FALSE(IsUnderDirectory(
+    EXPECT_TRUE(IsUnderDirectory(
         L"c:\\users\\test\\downloads\\a.exe",
         L"C:\\Users\\test\\Downloads"
     ));
