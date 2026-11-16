@@ -29,3 +29,10 @@ TEST(IsUnderDirectory, SiblingDirectoryWithSamePrefix) {
         L"C:\\Users\\test\\Downloads"
     ));
 }
+
+TEST(IsUnderDirectory, CaseInsensitiveMatch) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"c:\\users\\test\\downloads\\a.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
