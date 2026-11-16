@@ -62,3 +62,10 @@ TEST(IsUnderDirectory, EmptyDirectory) {
         L""
     ));
 }
+
+TEST(IsUnderDirectory, UnrelatedDirectory) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Windows\\System32\\svchost.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
