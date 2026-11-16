@@ -3,7 +3,9 @@
 #include <algorithm>
 
 bool IsUnderDirectory(std::wstring_view path, std::wstring_view directory) {
-    if(path.size() <= directory.size() ) return false;
+    if(path.size() <= directory.size() ||
+        path.empty() || 
+        directory.empty()) return false;
 
     auto CheckWord = [](std::size_t& index, std::wstring_view str) {
         std::wstring result = L"";
