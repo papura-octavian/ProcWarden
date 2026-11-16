@@ -15,3 +15,10 @@ TEST(IsUnderDirectory, FileInSubdirectory) {
         L"C:\\Users\\test\\Downloads"
     ));
 }
+
+TEST(IsUnderDirectory, PathIsShortherThanDirectory) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
