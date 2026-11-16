@@ -36,3 +36,10 @@ TEST(IsUnderDirectory, CaseInsensitiveMatch) {
         L"C:\\Users\\test\\Downloads"
     ));
 }
+
+TEST(IsUnderDirectory, DirectoryWithTrailingBackslash) {
+    EXPECT_TRUE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\a.exe",
+        L"C:\\Users\\test\\Downloads\\"
+    ));
+}
