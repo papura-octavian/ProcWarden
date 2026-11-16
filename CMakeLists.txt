@@ -21,6 +21,7 @@ endif()
 # ===== Core library: all logic, no main() =====
 add_library(procwarden_core STATIC
     src/agent/ProcessEnumerator.cpp
+    src/agent/PathRules.cpp
 )
 
 target_include_directories(procwarden_core PUBLIC src)
@@ -53,6 +54,7 @@ find_package(GTest CONFIG REQUIRED)
 
 add_executable(procwarden_tests
     tests/SanityTests.cpp
+    tests/PathRulesTests.cpp
 )
 
 target_link_libraries(procwarden_tests PRIVATE
