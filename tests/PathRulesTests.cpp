@@ -22,3 +22,10 @@ TEST(IsUnderDirectory, PathIsShortherThanDirectory) {
         L"C:\\Users\\test\\Downloads"
     ));
 }
+
+TEST(IsUnderDirectory, SiblingDirectoryWithSamePrefix) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users\\test\\DownloadsOld\\a.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
