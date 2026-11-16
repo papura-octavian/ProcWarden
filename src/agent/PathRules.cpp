@@ -3,7 +3,7 @@
 #include <algorithm>
 
 bool IsUnderDirectory(std::wstring_view path, std::wstring_view directory) {
-    if(path.size() < directory.size()) return false;
+    if(path.size() <= directory.size() ) return false;
 
     auto CheckWord = [](std::size_t& index, std::wstring_view str) {
         std::wstring result = L"";
@@ -29,6 +29,13 @@ bool IsUnderDirectory(std::wstring_view path, std::wstring_view directory) {
         if (first != second) {
             return false;
         }
+    }
+
+    // special case Path is bigger than Directory
+    // but it's just one `\` and not a file 
+    second = CheckWord(itPath, path);
+    if (second.empty()) {
+        return false;
     }
 
     return true;
