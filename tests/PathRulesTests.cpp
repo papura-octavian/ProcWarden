@@ -1,0 +1,71 @@
+#include <gtest/gtest.h>
+
+#include "agent/PathRules.h"
+
+TEST(IsUnderDirectory, FileDirectlyInDirectory) {
+    EXPECT_TRUE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\a.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
+
+TEST(IsUnderDirectory, FileInSubdirectory) {
+    EXPECT_TRUE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\subdir\\a.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
+
+TEST(IsUnderDirectory, PathIsShortherThanDirectory) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
+
+TEST(IsUnderDirectory, SiblingDirectoryWithSamePrefix) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users\\test\\DownloadsOld\\a.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
+
+TEST(IsUnderDirectory, CaseInsensitiveMatch) {
+    EXPECT_TRUE(IsUnderDirectory(
+        L"c:\\users\\test\\downloads\\a.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
+
+TEST(IsUnderDirectory, DirectoryWithTrailingBackslash) {
+    EXPECT_TRUE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\a.exe",
+        L"C:\\Users\\test\\Downloads\\"
+    ));
+}
+
+TEST(IsUnderDirectory, PathEqualToDirectory) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads",
+        L"C:\\Users\\test\\Downloads"
+    ));
+
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
+
+TEST(IsUnderDirectory, EmptyDirectory) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\a.exe",
+        L""
+    ));
+}
+
+TEST(IsUnderDirectory, UnrelatedDirectory) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Windows\\System32\\svchost.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
