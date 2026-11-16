@@ -8,3 +8,10 @@ TEST(IsUnderDirectory, FileDirectlyInDirectory) {
         L"C:\\Users\\test\\Downloads"
     ));
 }
+
+TEST(IsUnderDirectory, FileInSubdirectory) {
+    EXPECT_TRUE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\subdir\\a.exe",
+        L"C:\\Users\\test\\Downloads"
+    ));
+}
