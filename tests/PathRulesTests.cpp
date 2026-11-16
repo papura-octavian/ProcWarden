@@ -55,3 +55,10 @@ TEST(IsUnderDirectory, PathEqualToDirectory) {
         L"C:\\Users\\test\\Downloads"
     ));
 }
+
+TEST(IsUnderDirectory, EmptyDirectory) {
+    EXPECT_FALSE(IsUnderDirectory(
+        L"C:\\Users\\test\\Downloads\\a.exe",
+        L""
+    ));
+}
