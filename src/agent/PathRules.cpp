@@ -1,14 +1,11 @@
 #include "agent/PathRules.h"
 
 bool IsUnderDirectory(std::wstring_view path, std::wstring_view directory) {
-    while(true) {
-        if(path[path.size() - 1] == L'\\') {
-            path.remove_suffix(1);
-            break;
+    for(int it = 0; it < directory.size(); it++) {
+        if(directory[it] != path[it]) {
+            return false;
         }
-
-        path.remove_suffix(1);
     }
 
-    return path == directory;
+    return true;
 }
