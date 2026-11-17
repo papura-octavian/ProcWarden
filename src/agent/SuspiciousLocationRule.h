@@ -15,6 +15,10 @@ public:
     }
 
     std::optional<Alert> Evaluate(const ProcessInfo& process) const override {
+        if(_directories.empty()) {
+            return std::nullopt;
+        }
+
         for (const auto& dir : _directories) {
             if (IsUnderDirectory(process.imagePath, dir)) {
                 return Alert {
