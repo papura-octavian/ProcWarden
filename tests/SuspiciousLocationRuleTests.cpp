@@ -45,3 +45,14 @@ TEST(SuspiciousLocationRule, NoAlertWhenImagePathIsUnknown)
 
     EXPECT_FALSE(result.has_value());
 }
+
+TEST(SuspiciousLocationRule, NoAlertWhenNoDirectoriesConfigured)
+{
+    SuspiciousLocationRule rule({});
+
+    ProcessInfo process{ 1234, 4, L"evil.exe", L"C:\\Test\\Temp\\evil.exe" };
+
+    std::optional<Alert> result = rule.Evaluate(process);
+
+    EXPECT_FALSE(result.has_value());
+}
