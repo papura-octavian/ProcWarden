@@ -15,6 +15,16 @@ public:
     }
 
     std::optional<Alert> Evaluate(const ProcessInfo& process) const override {
+        for (const auto& dir : _directories) {
+            if (IsUnderDirectory(process.imagePath, dir)) {
+                return Alert {
+                    L"SuspiciousLocation",
+                    process,
+                    L"Executable runs from watched directory " + dir
+                };
+            }
+        }
+
         return std::nullopt;
     }
 };
