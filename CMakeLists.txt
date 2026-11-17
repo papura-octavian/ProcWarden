@@ -22,6 +22,7 @@ endif()
 add_library(procwarden_core STATIC
     src/agent/ProcessEnumerator.cpp
     src/agent/PathRules.cpp
+    src/agent/KnownFolders.cpp
 )
 
 target_include_directories(procwarden_core PUBLIC src)
