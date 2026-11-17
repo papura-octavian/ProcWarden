@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 
+// Path is input, Directory is what you check against
 bool IsUnderDirectory(std::wstring_view path, std::wstring_view directory) {
     if(path.size() <= directory.size() ||
         path.empty() || 
