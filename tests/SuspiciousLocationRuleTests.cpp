@@ -67,6 +67,6 @@ TEST(SuspiciousLocationRule, AlertContainsRuleNameAndProcess)
 
     ASSERT_TRUE(result.has_value());
     EXPECT_EQ(result->ruleName, L"SuspiciousLocation");
-    EXPECT_EQ(result->process.pid, 1234);
+    EXPECT_EQ(result->process.pid, 1234u);
     EXPECT_FALSE(result->details.empty());
 }
