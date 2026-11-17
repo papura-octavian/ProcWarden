@@ -23,3 +23,14 @@ TEST(SuspiciousLocationRule, AlertsForProcessInSecondWatchedDirectory)
 
     EXPECT_TRUE(result.has_value());
 }
+
+TEST(SuspiciousLocationRule, NoAlertForProcessOutsideWatchedDirectories)
+{
+    SuspiciousLocationRule rule({ L"C:\\Test\\Downloads", L"C:\\Test\\Temp" });
+
+    ProcessInfo process{ 1234, 4, L"svchost.exe", L"C:\\Windows\\System32\\svchost.exe" };
+
+    std::optional<Alert> result = rule.Evaluate(process);
+
+    EXPECT_FALSE(result.has_value());
+}
