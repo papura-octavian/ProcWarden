@@ -6,11 +6,11 @@
 class UniqueHandle
 {
 private:
-    HANDLE m_handle = nullptr;
+    HANDLE _handle = nullptr;
 public:
     UniqueHandle() = default;
 
-    explicit UniqueHandle(HANDLE handle) : m_handle(handle) {}
+    explicit UniqueHandle(HANDLE handle) : _handle(handle) {}
 
     ~UniqueHandle() { Reset(); }
 
@@ -21,30 +21,30 @@ public:
     UniqueHandle& operator=(const UniqueHandle&) = delete;
 
     UniqueHandle(UniqueHandle&& other) noexcept 
-        : m_handle(std::exchange(other.m_handle, nullptr)) 
+        : _handle(std::exchange(other._handle, nullptr)) 
     {
 
     }
 
     UniqueHandle& operator=(UniqueHandle&& other) noexcept {
         if(this != &other) {
-            Reset(std::exchange(other.m_handle, nullptr));
+            Reset(std::exchange(other._handle, nullptr));
         }
         return *this;
     }
 
     void Reset(HANDLE handle = nullptr) noexcept {
         if(IsValid()){
-            CloseHandle(m_handle);
+            CloseHandle(_handle);
         }
-        m_handle = handle;
+        _handle = handle;
     }
 
     bool IsValid() const {
-        return m_handle != nullptr && m_handle != INVALID_HANDLE_VALUE;
+        return _handle != nullptr && _handle != INVALID_HANDLE_VALUE;
     }
 
     HANDLE Get() const {
-        return m_handle;
+        return _handle;
     }
 };
