@@ -55,6 +55,7 @@ find_package(GTest CONFIG REQUIRED)
 add_executable(procwarden_tests
     tests/SanityTests.cpp
     tests/PathRulesTests.cpp
+    tests/SuspiciousLocationRuleTests.cpp
 )
 
 target_link_libraries(procwarden_tests PRIVATE
