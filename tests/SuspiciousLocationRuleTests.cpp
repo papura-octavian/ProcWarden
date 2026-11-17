@@ -34,3 +34,14 @@ TEST(SuspiciousLocationRule, NoAlertForProcessOutsideWatchedDirectories)
 
     EXPECT_FALSE(result.has_value());
 }
+
+TEST(SuspiciousLocationRule, NoAlertWhenImagePathIsUnknown)
+{
+    SuspiciousLocationRule rule({ L"C:\\Test\\Downloads", L"C:\\Test\\Temp" });
+
+    ProcessInfo process{ 1234, 4, L"lsass.exe", L"" };
+
+    std::optional<Alert> result = rule.Evaluate(process);
+
+    EXPECT_FALSE(result.has_value());
+}
